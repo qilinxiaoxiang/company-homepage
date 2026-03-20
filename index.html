@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神佑人工智能科技 | Shenyou AI Technology</title>
+  <meta name="description" content="神佑人工智能科技（无锡）有限公司 — AI信息咨询与技术咨询，成套解决方案的设计、实现与交付。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e8ed;
+      --text-secondary: #9898a6;
+      --accent: #6366f1;
+      --accent-glow: rgba(99,102,241,0.15);
+      --gradient-1: #6366f1;
+      --gradient-2: #8b5cf6;
+      --gradient-3: #a78bfa;
+      --font-cn: 'Noto Sans SC', sans-serif;
+      --font-en: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-cn);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ---- Ambient background ---- */
+    .bg-orb {
+      position: fixed; border-radius: 50%; filter: blur(120px);
+      pointer-events: none; z-index: 0; opacity: 0.35;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; top: -200px; left: -100px;
+      background: radial-gradient(circle, var(--gradient-1), transparent 70%); }
+    .bg-orb-2 { width: 500px; height: 500px; bottom: -150px; right: -100px;
+      background: radial-gradient(circle, var(--gradient-2), transparent 70%); }
+
+    /* ---- Layout ---- */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ---- Nav ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,15,0.8); border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-en); font-weight: 700; font-size: 18px;
+      color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .lang-btn {
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 14px; font-size: 13px; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.2s; font-family: var(--font-en);
+    }
+    .lang-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 80px;
+    }
+    .hero-inner { max-width: 720px; }
+    .hero-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 100px;
+      background: var(--accent-glow); border: 1px solid rgba(99,102,241,0.2);
+      font-size: 13px; color: var(--gradient-3); margin-bottom: 24px;
+      font-family: var(--font-en); font-weight: 500; letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700;
+      line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary);
+      margin-bottom: 40px; line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: 12px; font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: all 0.3s;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      color: white; border: none; cursor: pointer;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.25);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(99,102,241,0.35); }
+
+    /* ---- Sections ---- */
+    section { padding: 100px 0; }
+    .section-label {
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+      font-family: var(--font-en);
+    }
+    section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+      margin-bottom: 48px; letter-spacing: -0.01em;
+    }
+
+    /* ---- Services ---- */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 32px; transition: all 0.3s;
+    }
+    .service-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-4px); }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--accent-glow); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 24px;
+    }
+    .service-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ---- Approach ---- */
+    .approach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .approach-step {
+      text-align: center; padding: 32px 20px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    }
+    .step-num {
+      font-family: var(--font-en); font-size: 36px; font-weight: 700;
+      color: var(--accent); opacity: 0.6; margin-bottom: 12px;
+    }
+    .approach-step h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .approach-step p { font-size: 13px; color: var(--text-secondary); }
+
+    /* ---- About ---- */
+    .about-content { max-width: 720px; }
+    .about-content p {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;
+    }
+    .founder-card {
+      display: flex; align-items: center; gap: 20px; margin-top: 32px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+    .founder-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;
+      font-family: var(--font-en);
+    }
+    .founder-info h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .founder-info p { font-size: 13px; color: var(--text-secondary); margin: 0; }
+
+    /* ---- Contact ---- */
+    .contact-section { text-align: center; padding: 100px 0 120px; }
+    .contact-section h2 { margin-bottom: 16px; }
+    .contact-section .desc { color: var(--text-secondary); margin-bottom: 40px; font-size: 15px; }
+    .contact-methods { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px 28px; text-decoration: none; color: var(--text); transition: all 0.3s;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-card .icon { font-size: 20px; }
+    .contact-card .label { font-size: 13px; color: var(--text-secondary); }
+    .contact-card .value { font-size: 15px; font-weight: 500; }
+
+    /* ---- Footer ---- */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 0;
+      text-align: center; font-size: 13px; color: var(--text-secondary);
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      section { padding: 64px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .contact-methods { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .approach-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Shenyou<span>AI</span></a>
+      <div class="nav-links" id="nav-links"></div>
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge" id="hero-badge"></div>
+        <h1 id="hero-title"></h1>
+        <p class="hero-sub" id="hero-sub"></p>
+        <a class="hero-cta" href="#contact" id="hero-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+          <span id="hero-cta-text"></span>
+        </a>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-label">Services</div>
+        <h2 id="services-title"></h2>
+        <div class="services-grid" id="services-grid"></div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="section-label">Approach</div>
+        <h2 id="approach-title"></h2>
+        <div class="approach-grid" id="approach-grid"></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-label">About</div>
+        <h2 id="about-title"></h2>
+        <div class="about-content" id="about-content"></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <h2 id="contact-title"></h2>
+        <p class="desc" id="contact-desc"></p>
+        <div class="contact-methods" id="contact-methods"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p id="footer-text"></p>
+    </div>
+  </footer>
+
+  <script>
+    let lang = 'zh';
+
+    const content = {
+      zh: {
+        nav: [
+          { label: '服务', href: '#services' },
+          { label: '方法', href: '#approach' },
+          { label: '关于', href: '#about' },
+          { label: '联系', href: '#contact' }
+        ],
+        heroBadge: 'AI 信息咨询 · 技术咨询 · 解决方案交付',
+        heroTitle: '用 AI 重新定义<span class="accent">软件交付</span>',
+        heroSub: '神佑人工智能科技（无锡）有限公司 — 我们以 AI 原生的工程方法，为企业提供从咨询到交付的全链路 AI 技术服务。',
+        heroCta: '立即咨询',
+        servicesTitle: '我们的服务',
+        services: [
+          {
+            icon: '🧠',
+            title: 'AI 信息咨询',
+            desc: '帮助企业理解 AI 技术趋势，制定 AI 战略路线图，评估 AI 应用场景的可行性与 ROI，提供 AI 素养培训与工作坊。'
+          },
+          {
+            icon: '⚙️',
+            title: '技术咨询与架构设计',
+            desc: '基于 LLM、RAG、Agent 等前沿技术，设计适配业务场景的技术架构。涵盖系统选型、数据流设计、安全合规等关键环节。'
+          },
+          {
+            icon: '🚀',
+            title: '成套解决方案交付',
+            desc: '从需求分析到上线运维的端到端交付。采用 AI 辅助开发（Vibe Coding），以更高效率、更低成本交付生产级应用。'
+          }
+        ],
+        approachTitle: '我们的工作方式',
+        approach: [
+          { num: '01', title: '需求洞察', desc: '深入理解业务痛点与 AI 应用场景' },
+          { num: '02', title: '方案设计', desc: '架构设计、技术选型、里程碑规划' },
+          { num: '03', title: 'AI 驱动开发', desc: 'Vibe Coding 高效交付，人机协同编程' },
+          { num: '04', title: '部署与支持', desc: '上线部署、培训交接、持续优化' }
+        ],
+        aboutTitle: '关于我们',
+        aboutBody: [
+          '神佑人工智能科技（无锡）有限公司成立于 2025 年，专注于 AI 信息咨询、技术咨询以及成套解决方案的设计、实现与交付。',
+          '创始人项峥（Shawn Xiang）拥有超过 8 年的软件工程经验，曾担任花旗银行技术主管，现就读于卡内基梅隆大学 AI 工程硕士项目（GPA 3.93）。他将深厚的工程功底与前沿 AI 技术相结合，以 AI 原生的方式为客户创造价值。'
+        ],
+        founderName: '项峥 (Shawn Xiang)',
+        founderTitle: '创始人 · CMU AI Engineering · 前花旗技术主管',
+        contactTitle: '开始合作',
+        contactDesc: '无论您是想了解 AI 能为业务带来什么，还是已有明确的技术需求，我们都期待与您交流。',
+        contacts: [
+          { icon: '📧', label: '邮箱', value: 'contact@shenyouai.com' },
+          { icon: '🌐', label: '创始人主页', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
+        ],
+        footer: '&copy; 2025-2026 神佑人工智能科技（无锡）有限公司'
+      },
+      en: {
+        nav: [
+          { label: 'Services', href: '#services' },
+          { label: 'Approach', href: '#approach' },
+          { label: 'About', href: '#about' },
+          { label: 'Contact', href: '#contact' }
+        ],
+        heroBadge: 'AI Consulting · Technical Advisory · Solution Delivery',
+        heroTitle: 'Redefining Software Delivery with <span class="accent">AI</span>',
+        heroSub: 'Shenyou AI Technology (Wuxi) — We deliver end-to-end AI technology services, from strategic consulting to production-grade solutions, using AI-native engineering methods.',
+        heroCta: 'Get in Touch',
+        servicesTitle: 'Our Services',
+        services: [
+          {
+            icon: '🧠',
+            title: 'AI Consulting',
+            desc: 'Helping businesses understand AI trends, craft AI strategy roadmaps, assess feasibility and ROI of AI use cases, and upskill teams through AI literacy workshops.'
+          },
+          {
+            icon: '⚙️',
+            title: 'Technical Advisory & Architecture',
+            desc: 'Designing technology architectures leveraging LLMs, RAG, and AI agents tailored to your business context, including system selection, data flow design, and compliance.'
+          },
+          {
+            icon: '🚀',
+            title: 'End-to-End Solution Delivery',
+            desc: 'Full lifecycle delivery from requirements to production operations. We use AI-assisted development (Vibe Coding) to ship production-grade applications faster and more cost-effectively.'
+          }
+        ],
+        approachTitle: 'How We Work',
+        approach: [
+          { num: '01', title: 'Discovery', desc: 'Deep-dive into business pain points and AI opportunities' },
+          { num: '02', title: 'Design', desc: 'Architecture design, tech selection, milestone planning' },
+          { num: '03', title: 'AI-Driven Dev', desc: 'Vibe Coding for efficient delivery with human-AI collaboration' },
+          { num: '04', title: 'Deploy & Support', desc: 'Production deployment, training, and continuous optimization' }
+        ],
+        aboutTitle: 'About Us',
+        aboutBody: [
+          'Shenyou AI Technology (Wuxi) Co., Ltd., founded in 2025, specializes in AI consulting, technical advisory, and end-to-end solution design, implementation, and delivery.',
+          'Founder Shawn Xiang brings 8+ years of software engineering experience, including a tech lead role at Citigroup. Currently pursuing an MS in AI Engineering at Carnegie Mellon University (GPA 3.93), he combines deep engineering expertise with cutting-edge AI to deliver real value for clients through AI-native methods.'
+        ],
+        founderName: 'Shawn Xiang',
+        founderTitle: 'Founder · CMU AI Engineering · Former Citigroup Tech Lead',
+        contactTitle: 'Start a Conversation',
+        contactDesc: 'Whether you want to explore what AI can do for your business or have a specific technical challenge, we\'d love to hear from you.',
+        contacts: [
+          { icon: '📧', label: 'Email', value: 'contact@shenyouai.com' },
+          { icon: '🌐', label: 'Founder\'s Site', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
+        ],
+        footer: '&copy; 2025-2026 Shenyou AI Technology (Wuxi) Co., Ltd.'
+      }
+    };
+
+    function render() {
+      const c = content[lang];
+      document.getElementById('lang-btn').textContent = lang === 'zh' ? 'EN' : '中文';
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      // Nav
+      document.getElementById('nav-links').innerHTML = c.nav.map(n =>
+        `<a href="${n.href}">${n.label}</a>`
+      ).join('');
+
+      // Hero
+      document.getElementById('hero-badge').textContent = c.heroBadge;
+      document.getElementById('hero-title').innerHTML = c.heroTitle;
+      document.getElementById('hero-sub').textContent = c.heroSub;
+      document.getElementById('hero-cta-text').textContent = c.heroCta;
+
+      // Services
+      document.getElementById('services-title').textContent = c.servicesTitle;
+      document.getElementById('services-grid').innerHTML = c.services.map(s =>
+        `<div class="service-card">
+          <div class="service-icon">${s.icon}</div>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+        </div>`
+      ).join('');
+
+      // Approach
+      document.getElementById('approach-title').textContent = c.approachTitle;
+      document.getElementById('approach-grid').innerHTML = c.approach.map(a =>
+        `<div class="approach-step">
+          <div class="step-num">${a.num}</div>
+          <h3>${a.title}</h3>
+          <p>${a.desc}</p>
+        </div>`
+      ).join('');
+
+      // About
+      document.getElementById('about-title').textContent = c.aboutTitle;
+      document.getElementById('about-content').innerHTML =
+        c.aboutBody.map(p => `<p>${p}</p>`).join('') +
+        `<div class="founder-card">
+          <div class="founder-avatar">SX</div>
+          <div class="founder-info">
+            <h4>${c.founderName}</h4>
+            <p>${c.founderTitle}</p>
+          </div>
+        </div>`;
+
+      // Contact
+      document.getElementById('contact-title').textContent = c.contactTitle;
+      document.getElementById('contact-desc').textContent = c.contactDesc;
+      document.getElementById('contact-methods').innerHTML = c.contacts.map(ct => {
+        const tag = ct.href ? 'a' : 'div';
+        const href = ct.href ? ` href="${ct.href}" target="_blank" rel="noreferrer"` : '';
+        return `<${tag} class="contact-card"${href}>
+          <span class="icon">${ct.icon}</span>
+          <div>
+            <div class="label">${ct.label}</div>
+            <div class="value">${ct.value}</div>
+          </div>
+        </${tag}>`;
+      }).join('');
+
+      // Footer
+      document.getElementById('footer-text').innerHTML = c.footer;
+    }
+
+    function toggleLang() {
+      lang = lang === 'zh' ? 'en' : 'zh';
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
