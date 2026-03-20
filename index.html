@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>神佑人工智能科技 | Shenyou AI Technology</title>
-  <meta name="description" content="神佑人工智能科技（无锡）有限公司 — AI信息咨询与技术咨询，成套解决方案的设计、实现与交付。" />
+  <title>Shenyou AI Technology | AI Consulting & Solution Delivery</title>
+  <meta name="description" content="Shenyou AI Technology (Wuxi) delivers AI consulting, technical advisory, and end-to-end solution design and delivery." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -30,12 +30,14 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-cn);
+      font-family: var(--font-en);
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
     }
+    html[lang="zh-CN"] body { font-family: var(--font-cn); }
+    html[lang="en"] body { font-family: var(--font-en); }
 
     /* ---- Ambient background ---- */
     .bg-orb {
@@ -149,6 +151,73 @@
     .approach-step h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
     .approach-step p { font-size: 13px; color: var(--text-secondary); }
 
+    /* ---- Work ---- */
+    .work-card {
+      background: linear-gradient(180deg, rgba(99,102,241,0.08), rgba(18,18,26,0.92));
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 20px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+    }
+    .work-card h3 {
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .work-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 680px;
+    }
+    .work-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .work-chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: var(--font-en);
+    }
+    .work-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+    .work-link-primary {
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.2);
+    }
+    .work-link-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .work-link:hover {
+      transform: translateY(-2px);
+    }
+
     /* ---- About ---- */
     .about-content { max-width: 720px; }
     .about-content p {
@@ -198,6 +267,8 @@
       section { padding: 64px 0; }
       .services-grid { grid-template-columns: 1fr; }
       .approach-grid { grid-template-columns: 1fr 1fr; }
+      .work-card { grid-template-columns: 1fr; }
+      .work-links { min-width: 0; }
       .contact-methods { flex-direction: column; align-items: center; }
     }
     @media (max-width: 480px) {
@@ -213,7 +284,7 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">Shenyou<span>AI</span></a>
       <div class="nav-links" id="nav-links"></div>
-      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">中文</button>
     </div>
   </nav>
 
@@ -232,7 +303,7 @@
 
     <section id="services">
       <div class="container">
-        <div class="section-label">Services</div>
+        <div class="section-label" id="services-label"></div>
         <h2 id="services-title"></h2>
         <div class="services-grid" id="services-grid"></div>
       </div>
@@ -240,15 +311,30 @@
 
     <section id="approach">
       <div class="container">
-        <div class="section-label">Approach</div>
+        <div class="section-label" id="approach-label"></div>
         <h2 id="approach-title"></h2>
         <div class="approach-grid" id="approach-grid"></div>
       </div>
     </section>
 
+    <section id="work">
+      <div class="container">
+        <div class="section-label" id="work-label"></div>
+        <h2 id="work-title"></h2>
+        <div class="work-card">
+          <div>
+            <h3 id="work-card-title"></h3>
+            <p id="work-card-desc"></p>
+            <div class="work-meta" id="work-meta"></div>
+          </div>
+          <div class="work-links" id="work-links"></div>
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <div class="container">
-        <div class="section-label">About</div>
+        <div class="section-label" id="about-label"></div>
         <h2 id="about-title"></h2>
         <div class="about-content" id="about-content"></div>
       </div>
@@ -270,13 +356,16 @@
   </footer>
 
   <script>
-    let lang = 'zh';
+    let lang = 'en';
 
     const content = {
       zh: {
+        pageTitle: '神佑人工智能科技 | AI 咨询与解决方案交付',
+        pageDescription: '神佑人工智能科技（无锡）有限公司提供 AI 信息咨询、技术咨询与端到端解决方案设计和交付。',
         nav: [
           { label: '服务', href: '#services' },
           { label: '方法', href: '#approach' },
+          { label: '作品', href: '#work' },
           { label: '关于', href: '#about' },
           { label: '联系', href: '#contact' }
         ],
@@ -284,6 +373,7 @@
         heroTitle: '用 AI 重新定义<span class="accent">软件交付</span>',
         heroSub: '神佑人工智能科技（无锡）有限公司 — 我们以 AI 原生的工程方法，为企业提供从咨询到交付的全链路 AI 技术服务。',
         heroCta: '立即咨询',
+        servicesLabel: '服务',
         servicesTitle: '我们的服务',
         services: [
           {
@@ -303,13 +393,24 @@
           }
         ],
         approachTitle: '我们的工作方式',
+        approachLabel: '方法',
         approach: [
           { num: '01', title: '需求洞察', desc: '深入理解业务痛点与 AI 应用场景' },
           { num: '02', title: '方案设计', desc: '架构设计、技术选型、里程碑规划' },
           { num: '03', title: 'AI 驱动开发', desc: 'Vibe Coding 高效交付，人机协同编程' },
           { num: '04', title: '部署与支持', desc: '上线部署、培训交接、持续优化' }
         ],
+        workLabel: '代表作品',
+        workTitle: '从咨询到产品落地',
+        workCardTitle: 'NextMove',
+        workCardDesc: 'NextMove 是我独立打造的 AI 决策引擎产品，会基于任务、日程和行为模式，告诉用户此刻最值得做的下一步。它集中体现了我在 AI 产品设计、全栈工程、Agent 工作流和可交付体验上的能力。',
+        workChips: ['AI 决策引擎', '多源任务整合', '行为建模', '实时产品演示'],
+        workLinks: [
+          { label: '查看功能介绍', href: 'https://www.nextmove.work/features', kind: 'primary' },
+          { label: '打开产品主页', href: 'https://www.nextmove.work', kind: 'secondary' }
+        ],
         aboutTitle: '关于我们',
+        aboutLabel: '关于',
         aboutBody: [
           '神佑人工智能科技（无锡）有限公司成立于 2025 年，专注于 AI 信息咨询、技术咨询以及成套解决方案的设计、实现与交付。',
           '创始人项峥（Shawn Xiang）拥有超过 8 年的软件工程经验，曾担任花旗银行技术主管，现就读于卡内基梅隆大学 AI 工程硕士项目（GPA 3.93）。他将深厚的工程功底与前沿 AI 技术相结合，以 AI 原生的方式为客户创造价值。'
@@ -325,9 +426,12 @@
         footer: '&copy; 2025-2026 神佑人工智能科技（无锡）有限公司'
       },
       en: {
+        pageTitle: 'Shenyou AI Technology | AI Consulting & Solution Delivery',
+        pageDescription: 'Shenyou AI Technology (Wuxi) delivers AI consulting, technical advisory, and end-to-end solution design and delivery.',
         nav: [
           { label: 'Services', href: '#services' },
           { label: 'Approach', href: '#approach' },
+          { label: 'Work', href: '#work' },
           { label: 'About', href: '#about' },
           { label: 'Contact', href: '#contact' }
         ],
@@ -335,6 +439,7 @@
         heroTitle: 'Redefining Software Delivery with <span class="accent">AI</span>',
         heroSub: 'Shenyou AI Technology (Wuxi) — We deliver end-to-end AI technology services, from strategic consulting to production-grade solutions, using AI-native engineering methods.',
         heroCta: 'Get in Touch',
+        servicesLabel: 'Services',
         servicesTitle: 'Our Services',
         services: [
           {
@@ -354,13 +459,24 @@
           }
         ],
         approachTitle: 'How We Work',
+        approachLabel: 'Approach',
         approach: [
           { num: '01', title: 'Discovery', desc: 'Deep-dive into business pain points and AI opportunities' },
           { num: '02', title: 'Design', desc: 'Architecture design, tech selection, milestone planning' },
           { num: '03', title: 'AI-Driven Dev', desc: 'Vibe Coding for efficient delivery with human-AI collaboration' },
           { num: '04', title: 'Deploy & Support', desc: 'Production deployment, training, and continuous optimization' }
         ],
+        workLabel: 'Selected Work',
+        workTitle: 'From consulting to shipped products',
+        workCardTitle: 'NextMove',
+        workCardDesc: 'NextMove is an AI decision engine I built that tells users the highest-value thing to do right now based on tasks, calendar context, and behavioral patterns. It demonstrates the kind of AI product thinking, full-stack execution, agentic workflow design, and polished delivery I bring to client work.',
+        workChips: ['AI decision engine', 'Multi-source task sync', 'Behavioral modeling', 'Live product demo'],
+        workLinks: [
+          { label: 'View feature walkthrough', href: 'https://www.nextmove.work/features', kind: 'primary' },
+          { label: 'Visit product site', href: 'https://www.nextmove.work', kind: 'secondary' }
+        ],
         aboutTitle: 'About Us',
+        aboutLabel: 'About',
         aboutBody: [
           'Shenyou AI Technology (Wuxi) Co., Ltd., founded in 2025, specializes in AI consulting, technical advisory, and end-to-end solution design, implementation, and delivery.',
           'Founder Shawn Xiang brings 8+ years of software engineering experience, including a tech lead role at Citigroup. Currently pursuing an MS in AI Engineering at Carnegie Mellon University (GPA 3.93), he combines deep engineering expertise with cutting-edge AI to deliver real value for clients through AI-native methods.'
@@ -381,6 +497,8 @@
       const c = content[lang];
       document.getElementById('lang-btn').textContent = lang === 'zh' ? 'EN' : '中文';
       document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      document.title = c.pageTitle;
+      document.querySelector('meta[name="description"]').setAttribute('content', c.pageDescription);
 
       // Nav
       document.getElementById('nav-links').innerHTML = c.nav.map(n =>
@@ -394,6 +512,7 @@
       document.getElementById('hero-cta-text').textContent = c.heroCta;
 
       // Services
+      document.getElementById('services-label').textContent = c.servicesLabel;
       document.getElementById('services-title').textContent = c.servicesTitle;
       document.getElementById('services-grid').innerHTML = c.services.map(s =>
         `<div class="service-card">
@@ -404,6 +523,7 @@
       ).join('');
 
       // Approach
+      document.getElementById('approach-label').textContent = c.approachLabel;
       document.getElementById('approach-title').textContent = c.approachTitle;
       document.getElementById('approach-grid').innerHTML = c.approach.map(a =>
         `<div class="approach-step">
@@ -413,7 +533,20 @@
         </div>`
       ).join('');
 
+      // Work
+      document.getElementById('work-label').textContent = c.workLabel;
+      document.getElementById('work-title').textContent = c.workTitle;
+      document.getElementById('work-card-title').textContent = c.workCardTitle;
+      document.getElementById('work-card-desc').textContent = c.workCardDesc;
+      document.getElementById('work-meta').innerHTML = c.workChips.map(chip =>
+        `<span class="work-chip">${chip}</span>`
+      ).join('');
+      document.getElementById('work-links').innerHTML = c.workLinks.map(link =>
+        `<a class="work-link work-link-${link.kind}" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`
+      ).join('');
+
       // About
+      document.getElementById('about-label').textContent = c.aboutLabel;
       document.getElementById('about-title').textContent = c.aboutTitle;
       document.getElementById('about-content').innerHTML =
         c.aboutBody.map(p => `<p>${p}</p>`).join('') +
