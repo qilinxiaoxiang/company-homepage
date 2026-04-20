@@ -45,11 +45,24 @@
     .bg-orb {
       position: fixed; border-radius: 50%; filter: blur(120px);
       pointer-events: none; z-index: 0; opacity: 0.35;
+      will-change: transform;
     }
     .bg-orb-1 { width: 600px; height: 600px; top: -200px; left: -100px;
-      background: radial-gradient(circle, var(--gradient-1), transparent 70%); }
+      background: radial-gradient(circle, var(--gradient-1), transparent 70%);
+      animation: orbDriftA 30s ease-in-out infinite; }
     .bg-orb-2 { width: 500px; height: 500px; bottom: -150px; right: -100px;
-      background: radial-gradient(circle, var(--gradient-2), transparent 70%); }
+      background: radial-gradient(circle, var(--gradient-2), transparent 70%);
+      animation: orbDriftB 38s ease-in-out infinite; animation-delay: -12s; }
+    @keyframes orbDriftA {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      33%      { transform: translate3d(80px, 60px, 0) scale(1.1); }
+      66%      { transform: translate3d(-40px, 100px, 0) scale(0.95); }
+    }
+    @keyframes orbDriftB {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      40%      { transform: translate3d(-90px, -60px, 0) scale(1.12); }
+      70%      { transform: translate3d(40px, -80px, 0) scale(0.9); }
+    }
 
     /* ---- Layout ---- */
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
@@ -93,15 +106,39 @@
       background: var(--accent-glow); border: 1px solid rgba(99,102,241,0.2);
       font-size: 13px; color: var(--gradient-3); margin-bottom: 24px;
       font-family: var(--font-en); font-weight: 500; letter-spacing: 0.02em;
+      animation: fadeUp 0.6s 0s ease both;
     }
     .hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700;
       line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.02em;
+      text-wrap: balance;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
-    .hero h1 .accent { color: var(--accent); }
+    .hero h1 .accent {
+      background: linear-gradient(
+        110deg,
+        var(--gradient-2) 0%,
+        var(--gradient-1) 25%,
+        #c4b5fd 48%,
+        #e9d5ff 52%,
+        #c4b5fd 56%,
+        var(--gradient-1) 75%,
+        var(--gradient-2) 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shineText 7s linear infinite;
+    }
+    @keyframes shineText {
+      from { background-position: 100% 50%; }
+      to   { background-position: -100% 50%; }
+    }
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary);
       margin-bottom: 40px; line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
     }
     .hero-cta {
       display: inline-flex; align-items: center; gap: 10px;
@@ -110,8 +147,22 @@
       background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
       color: white; border: none; cursor: pointer;
       box-shadow: 0 4px 24px rgba(99,102,241,0.25);
+      animation: fadeUp 0.6s 0.3s ease both;
     }
     .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(99,102,241,0.35); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Scroll reveal ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ---- Sections ---- */
     section { padding: 100px 0; }
@@ -135,8 +186,9 @@
     .service-icon {
       width: 48px; height: 48px; border-radius: 12px;
       background: var(--accent-glow); display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px; font-size: 24px;
+      margin-bottom: 20px; color: var(--gradient-3);
     }
+    .service-icon svg { width: 24px; height: 24px; }
     .service-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
     .service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
@@ -251,9 +303,39 @@
       display: flex; align-items: center; gap: 12px;
     }
     .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .contact-card .icon { font-size: 20px; }
+    .contact-card .icon { display: inline-flex; color: var(--gradient-3); }
+    .contact-card .icon svg { width: 20px; height: 20px; }
     .contact-card .label { font-size: 13px; color: var(--text-secondary); }
     .contact-card .value { font-size: 15px; font-weight: 500; }
+
+    /* ---- Founder photo aurora halo ---- */
+    .founder-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+    }
+    .founder-avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(139, 92, 246, 0.5) 0%,
+        rgba(99, 102, 241, 0.22) 40%,
+        transparent 70%
+      );
+      filter: blur(20px);
+      z-index: 0;
+      animation: photoAuroraDrift 14s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .founder-avatar-wrap .founder-avatar { position: relative; z-index: 1; }
+    @keyframes photoAuroraDrift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50%      { transform: translate3d(-8px, 10px, 0) scale(1.12); }
+    }
 
     /* ---- Footer ---- */
     footer {
@@ -323,7 +405,7 @@
       <div class="container">
         <div class="section-label" id="work-label"></div>
         <h2 id="work-title"></h2>
-        <div class="work-card">
+        <div class="work-card reveal">
           <div>
             <h3 id="work-card-title"></h3>
             <p id="work-card-desc"></p>
@@ -379,17 +461,17 @@
         servicesTitle: '我们的服务',
         services: [
           {
-            icon: '🧠',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/></svg>',
             title: 'AI 信息咨询',
             desc: 'AI 战略层咨询：梳理行业 AI 技术趋势、制定 AI 路线图、评估场景可行性与 ROI，以及团队 AI 素养培训与工作坊。'
           },
           {
-            icon: '⚙️',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="22" y1="8.5" x2="2" y2="15.5"/><line x1="2" y1="8.5" x2="22" y2="15.5"/></svg>',
             title: '技术咨询与架构设计',
             desc: '驻场式架构设计：深入你的业务、数据、合规约束，落地 LLM / RAG / Agent 技术选型、系统架构与数据流设计。'
           },
           {
-            icon: '🚀',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
             title: '前置交付 · 方案落地',
             desc: 'Forward-Deployed 全链路交付：诊断业务问题 → 架构方案 → AI 辅助开发（Vibe Coding）→ 部署上线 → 负责采纳。不是交付代码了事，是把 AI 嵌进你的业务里跑起来。'
           }
@@ -422,8 +504,8 @@
         contactTitle: '开始合作',
         contactDesc: '无论您是想了解 AI 能为业务带来什么，还是已有明确的技术需求，我们都期待与您交流。',
         contacts: [
-          { icon: '📧', label: '邮箱', value: 'contact@shenyouai.com' },
-          { icon: '🌐', label: '创始人主页', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
+          { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>', label: '邮箱', value: 'contact@shenyouai.com' },
+          { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>', label: '创始人主页', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
         ],
         footer: '&copy; 2025-2026 神佑人工智能科技（无锡）有限公司'
       },
@@ -445,17 +527,17 @@
         servicesTitle: 'Our Services',
         services: [
           {
-            icon: '🧠',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/></svg>',
             title: 'AI Consulting',
             desc: 'Strategy-level consulting: AI trend briefings, roadmap design, feasibility and ROI assessment of AI use cases, and team AI-literacy workshops.'
           },
           {
-            icon: '⚙️',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="22" y1="8.5" x2="2" y2="15.5"/><line x1="2" y1="8.5" x2="22" y2="15.5"/></svg>',
             title: 'Technical Advisory & Architecture',
             desc: 'Embedded architecture design: deep-dive into your business, data, and compliance constraints to land LLM / RAG / Agent stacks, system selection, and data-flow design.'
           },
           {
-            icon: '🚀',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
             title: 'Forward-Deployed Delivery',
             desc: 'Full-loop FDAIE delivery: diagnose business problem → architect solution → AI-assisted development (Vibe Coding) → ship → own adoption. Not hand-off-and-leave; we embed until the AI system is compounding inside your operations.'
           }
@@ -488,8 +570,8 @@
         contactTitle: 'Start a Conversation',
         contactDesc: 'Whether you want to explore what AI can do for your business or have a specific technical challenge, we\'d love to hear from you.',
         contacts: [
-          { icon: '📧', label: 'Email', value: 'contact@shenyouai.com' },
-          { icon: '🌐', label: 'Founder\'s Site', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
+          { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>', label: 'Email', value: 'contact@shenyouai.com' },
+          { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>', label: 'Founder\'s Site', value: 'shawnxiang.com', href: 'https://shawnxiang.com' }
         ],
         footer: '&copy; 2025-2026 Shenyou AI Technology (Wuxi) Co., Ltd.'
       }
@@ -517,7 +599,7 @@
       document.getElementById('services-label').textContent = c.servicesLabel;
       document.getElementById('services-title').textContent = c.servicesTitle;
       document.getElementById('services-grid').innerHTML = c.services.map(s =>
-        `<div class="service-card">
+        `<div class="service-card reveal">
           <div class="service-icon">${s.icon}</div>
           <h3>${s.title}</h3>
           <p>${s.desc}</p>
@@ -528,7 +610,7 @@
       document.getElementById('approach-label').textContent = c.approachLabel;
       document.getElementById('approach-title').textContent = c.approachTitle;
       document.getElementById('approach-grid').innerHTML = c.approach.map(a =>
-        `<div class="approach-step">
+        `<div class="approach-step reveal">
           <div class="step-num">${a.num}</div>
           <h3>${a.title}</h3>
           <p>${a.desc}</p>
@@ -552,8 +634,10 @@
       document.getElementById('about-title').textContent = c.aboutTitle;
       document.getElementById('about-content').innerHTML =
         c.aboutBody.map(p => `<p>${p}</p>`).join('') +
-        `<div class="founder-card">
-          <img class="founder-avatar" src="./assets/shawn-headshot.jpg" alt="${c.founderName}" />
+        `<div class="founder-card reveal">
+          <div class="founder-avatar-wrap">
+            <img class="founder-avatar" src="./assets/shawn-headshot.jpg" alt="${c.founderName}" />
+          </div>
           <div class="founder-info">
             <h4>${c.founderName}</h4>
             <p>${c.founderTitle}</p>
@@ -566,7 +650,7 @@
       document.getElementById('contact-methods').innerHTML = c.contacts.map(ct => {
         const tag = ct.href ? 'a' : 'div';
         const href = ct.href ? ` href="${ct.href}" target="_blank" rel="noreferrer"` : '';
-        return `<${tag} class="contact-card"${href}>
+        return `<${tag} class="contact-card reveal"${href}>
           <span class="icon">${ct.icon}</span>
           <div>
             <div class="label">${ct.label}</div>
@@ -577,6 +661,22 @@
 
       // Footer
       document.getElementById('footer-text').innerHTML = c.footer;
+
+      // Re-apply scroll reveal observer (fresh DOM nodes after render)
+      requestAnimationFrame(initReveal);
+    }
+
+    function initReveal() {
+      const els = document.querySelectorAll('.reveal:not(.visible)');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => observer.observe(el));
     }
 
     function toggleLang() {
