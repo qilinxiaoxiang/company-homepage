@@ -14,14 +14,14 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface-2: #1a1a26;
-      --border: rgba(255,255,255,0.06);
-      --text: #e8e8ed;
-      --text-secondary: #9898a6;
+      --bg: #1a1a24;
+      --surface: #24242f;
+      --surface-2: #2e2e3c;
+      --border: rgba(255,255,255,0.08);
+      --text: #ececf1;
+      --text-secondary: #a8a8b6;
       --accent: #6366f1;
-      --accent-glow: rgba(99,102,241,0.15);
+      --accent-glow: rgba(99,102,241,0.18);
       --gradient-1: #6366f1;
       --gradient-2: #8b5cf6;
       --gradient-3: #a78bfa;
@@ -305,7 +305,7 @@
     .contact-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
       padding: 20px 28px; text-decoration: none; color: var(--text); transition: all 0.3s;
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
     }
     .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .contact-card .icon { display: inline-flex; color: var(--gradient-3); }
