@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shenyou AI Technology | AI Consulting & Solution Delivery</title>
   <meta name="description" content="Shenyou AI Technology (Wuxi) delivers AI consulting, technical advisory, and end-to-end solution design and delivery." />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="./assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -229,11 +231,11 @@
       border-radius: 16px; padding: 24px;
     }
     .founder-avatar {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;
-      font-family: var(--font-en);
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover; object-position: center 22%;
+      flex-shrink: 0;
+      border: 2px solid rgba(99,102,241,0.35);
+      box-shadow: 0 6px 24px -6px rgba(99,102,241,0.4);
     }
     .founder-info h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
     .founder-info p { font-size: 13px; color: var(--text-secondary); margin: 0; }
@@ -369,9 +371,9 @@
           { label: '关于', href: '#about' },
           { label: '联系', href: '#contact' }
         ],
-        heroBadge: 'AI 信息咨询 · 技术咨询 · 解决方案交付',
+        heroBadge: '前置交付 AI 工程 · 信息咨询 · 技术咨询 · 方案落地',
         heroTitle: '用 AI 重新定义<span class="accent">软件交付</span>',
-        heroSub: '神佑人工智能科技（无锡）有限公司 — 我们以 AI 原生的工程方法，为企业提供从咨询到交付的全链路 AI 技术服务。',
+        heroSub: '神佑人工智能科技（无锡）有限公司 — 以 Forward-Deployed AI Engineering（前置交付 AI 工程）为核心方法，为企业提供从咨询、架构到落地采纳的全链路 AI 技术服务。',
         heroCta: '立即咨询',
         servicesLabel: '服务',
         servicesTitle: '我们的服务',
@@ -379,17 +381,17 @@
           {
             icon: '🧠',
             title: 'AI 信息咨询',
-            desc: '帮助企业理解 AI 技术趋势，制定 AI 战略路线图，评估 AI 应用场景的可行性与 ROI，提供 AI 素养培训与工作坊。'
+            desc: 'AI 战略层咨询：梳理行业 AI 技术趋势、制定 AI 路线图、评估场景可行性与 ROI，以及团队 AI 素养培训与工作坊。'
           },
           {
             icon: '⚙️',
             title: '技术咨询与架构设计',
-            desc: '基于 LLM、RAG、Agent 等前沿技术，设计适配业务场景的技术架构。涵盖系统选型、数据流设计、安全合规等关键环节。'
+            desc: '驻场式架构设计：深入你的业务、数据、合规约束，落地 LLM / RAG / Agent 技术选型、系统架构与数据流设计。'
           },
           {
             icon: '🚀',
-            title: '成套解决方案交付',
-            desc: '从需求分析到上线运维的端到端交付。采用 AI 辅助开发（Vibe Coding），以更高效率、更低成本交付生产级应用。'
+            title: '前置交付 · 方案落地',
+            desc: 'Forward-Deployed 全链路交付：诊断业务问题 → 架构方案 → AI 辅助开发（Vibe Coding）→ 部署上线 → 负责采纳。不是交付代码了事，是把 AI 嵌进你的业务里跑起来。'
           }
         ],
         approachTitle: '我们的工作方式',
@@ -412,11 +414,11 @@
         aboutTitle: '关于我们',
         aboutLabel: '关于',
         aboutBody: [
-          '神佑人工智能科技（无锡）有限公司成立于 2025 年，专注于 AI 信息咨询、技术咨询以及成套解决方案的设计、实现与交付。',
-          '创始人项峥（Shawn Xiang）拥有超过 8 年的软件工程经验，曾担任花旗银行技术主管，现就读于卡内基梅隆大学 AI 工程硕士项目（GPA 3.93）。他将深厚的工程功底与前沿 AI 技术相结合，以 AI 原生的方式为客户创造价值。'
+          '神佑人工智能科技（无锡）有限公司成立于 2025 年，以 <strong>Forward-Deployed AI Engineering（前置交付 AI 工程）</strong>为核心方法——驻场客户业务，把 AI 嵌到真实的业务流程里，从咨询、架构到落地采纳全链路负责。',
+          '创始人项峥（Shawn Xiang）——卡内基梅隆大学 AI 工程 —— 生物医学工程 硕士在读，8+ 年跨软件、方案架构、企业交付的经验，曾任花旗银行技术主管。完整履历见 <a href="https://shawnxiang.com" target="_blank" rel="noreferrer" style="color: var(--accent)">shawnxiang.com</a>。'
         ],
         founderName: '项峥 (Shawn Xiang)',
-        founderTitle: '创始人 · CMU AI Engineering · 前花旗技术主管',
+        founderTitle: '创始人 · 前置交付 AI 工程师 · CMU AIE-BME',
         contactTitle: '开始合作',
         contactDesc: '无论您是想了解 AI 能为业务带来什么，还是已有明确的技术需求，我们都期待与您交流。',
         contacts: [
@@ -435,9 +437,9 @@
           { label: 'About', href: '#about' },
           { label: 'Contact', href: '#contact' }
         ],
-        heroBadge: 'AI Consulting · Technical Advisory · Solution Delivery',
+        heroBadge: 'Forward-Deployed AI Engineering · Consulting · Delivery',
         heroTitle: 'Redefining Software Delivery with <span class="accent">AI</span>',
-        heroSub: 'Shenyou AI Technology (Wuxi) — We deliver end-to-end AI technology services, from strategic consulting to production-grade solutions, using AI-native engineering methods.',
+        heroSub: 'Shenyou AI Technology (Wuxi) — A Forward-Deployed AI Engineering consultancy. We embed with your business, diagnose the real problems, and ship AI solutions that compound.',
         heroCta: 'Get in Touch',
         servicesLabel: 'Services',
         servicesTitle: 'Our Services',
@@ -445,17 +447,17 @@
           {
             icon: '🧠',
             title: 'AI Consulting',
-            desc: 'Helping businesses understand AI trends, craft AI strategy roadmaps, assess feasibility and ROI of AI use cases, and upskill teams through AI literacy workshops.'
+            desc: 'Strategy-level consulting: AI trend briefings, roadmap design, feasibility and ROI assessment of AI use cases, and team AI-literacy workshops.'
           },
           {
             icon: '⚙️',
             title: 'Technical Advisory & Architecture',
-            desc: 'Designing technology architectures leveraging LLMs, RAG, and AI agents tailored to your business context, including system selection, data flow design, and compliance.'
+            desc: 'Embedded architecture design: deep-dive into your business, data, and compliance constraints to land LLM / RAG / Agent stacks, system selection, and data-flow design.'
           },
           {
             icon: '🚀',
-            title: 'End-to-End Solution Delivery',
-            desc: 'Full lifecycle delivery from requirements to production operations. We use AI-assisted development (Vibe Coding) to ship production-grade applications faster and more cost-effectively.'
+            title: 'Forward-Deployed Delivery',
+            desc: 'Full-loop FDAIE delivery: diagnose business problem → architect solution → AI-assisted development (Vibe Coding) → ship → own adoption. Not hand-off-and-leave; we embed until the AI system is compounding inside your operations.'
           }
         ],
         approachTitle: 'How We Work',
@@ -478,11 +480,11 @@
         aboutTitle: 'About Us',
         aboutLabel: 'About',
         aboutBody: [
-          'Shenyou AI Technology (Wuxi) Co., Ltd., founded in 2025, specializes in AI consulting, technical advisory, and end-to-end solution design, implementation, and delivery.',
-          'Founder Shawn Xiang brings 8+ years of software engineering experience, including a tech lead role at Citigroup. Currently pursuing an MS in AI Engineering at Carnegie Mellon University (GPA 3.93), he combines deep engineering expertise with cutting-edge AI to deliver real value for clients through AI-native methods.'
+          'Shenyou AI Technology (Wuxi) Co., Ltd., founded in 2025, operates as a <strong>Forward-Deployed AI Engineering consultancy</strong> — we embed with client businesses, diagnose the real problems, and own AI solution delivery end-to-end: consulting, architecture, build, and adoption.',
+          'Founder Shawn (Zheng) Xiang — MS in AI Engineering — Biomedical Engineering at Carnegie Mellon, 8+ years across software engineering, solution architecture, and enterprise delivery, former Tech Lead at Citigroup. Full profile at <a href="https://shawnxiang.com" target="_blank" rel="noreferrer" style="color: var(--accent)">shawnxiang.com</a>.'
         ],
-        founderName: 'Shawn Xiang',
-        founderTitle: 'Founder · CMU AI Engineering · Former Citigroup Tech Lead',
+        founderName: 'Shawn (Zheng) Xiang',
+        founderTitle: 'Founder · Forward-Deployed AI Engineer · CMU AIE-BME',
         contactTitle: 'Start a Conversation',
         contactDesc: 'Whether you want to explore what AI can do for your business or have a specific technical challenge, we\'d love to hear from you.',
         contacts: [
@@ -551,7 +553,7 @@
       document.getElementById('about-content').innerHTML =
         c.aboutBody.map(p => `<p>${p}</p>`).join('') +
         `<div class="founder-card">
-          <div class="founder-avatar">SX</div>
+          <img class="founder-avatar" src="./assets/shawn-headshot.jpg" alt="${c.founderName}" />
           <div class="founder-info">
             <h4>${c.founderName}</h4>
             <p>${c.founderTitle}</p>
