@@ -97,8 +97,8 @@
 
     /* ---- Hero ---- */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
+      min-height: auto; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 130px 24px 90px;
     }
     .hero-inner { max-width: 720px; }
     .hero-badge {
@@ -165,22 +165,22 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ---- Sections ---- */
-    section { padding: 100px 0; }
+    section { padding: 72px 0; }
     .section-label {
       font-size: 13px; font-weight: 600; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
       font-family: var(--font-en);
     }
     section h2 {
       font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
-      margin-bottom: 48px; letter-spacing: -0.01em;
+      margin-bottom: 32px; letter-spacing: -0.01em;
     }
 
     /* ---- Services ---- */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .service-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      padding: 32px; transition: all 0.3s;
+      padding: 26px; transition: all 0.3s;
     }
     .service-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-4px); }
     .service-icon {
@@ -195,7 +195,7 @@
     /* ---- Approach ---- */
     .approach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
     .approach-step {
-      text-align: center; padding: 32px 20px;
+      text-align: center; padding: 24px 18px;
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
     }
     .step-num {
@@ -293,9 +293,9 @@
     .founder-info p { font-size: 13px; color: var(--text-secondary); margin: 0; }
 
     /* ---- Contact ---- */
-    .contact-section { text-align: center; padding: 100px 0 120px; }
-    .contact-section h2 { margin-bottom: 16px; }
-    .contact-section .desc { color: var(--text-secondary); margin-bottom: 40px; font-size: 15px; }
+    .contact-section { text-align: center; padding: 72px 0 96px; }
+    .contact-section h2 { margin-bottom: 14px; }
+    .contact-section .desc { color: var(--text-secondary); margin-bottom: 32px; font-size: 15px; }
     .contact-methods {
       display: grid;
       grid-template-columns: repeat(2, minmax(260px, 320px));
@@ -313,33 +313,11 @@
     .contact-card .label { font-size: 13px; color: var(--text-secondary); }
     .contact-card .value { font-size: 15px; font-weight: 500; }
 
-    /* ---- Founder photo aurora halo ---- */
+    /* ---- Founder photo wrap ---- */
     .founder-avatar-wrap {
-      position: relative;
       flex-shrink: 0;
       width: 72px;
       height: 72px;
-    }
-    .founder-avatar-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -40%;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(139, 92, 246, 0.5) 0%,
-        rgba(99, 102, 241, 0.22) 40%,
-        transparent 70%
-      );
-      filter: blur(20px);
-      z-index: 0;
-      animation: photoAuroraDrift 14s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .founder-avatar-wrap .founder-avatar { position: relative; z-index: 1; }
-    @keyframes photoAuroraDrift {
-      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-      50%      { transform: translate3d(-8px, 10px, 0) scale(1.12); }
     }
 
     /* ---- Footer ---- */
